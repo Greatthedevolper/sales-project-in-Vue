@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --chngeable-color: #581c87;
+  --primary-color: var(--chngeable-color, #581c87);
+  --hover-color: #3b0764;
+  --primary-text: #f3e8ff;
+  --secondary-color: #d8b4fe;
+}
+
+.side-bar {
+  @apply bg-[var(--primary-color)] py-4 px-3 relative border-e border-[var(--hover-color)];
+}
+.side-bar-link {
+  @apply flex relative text-[var(--primary-text)] gap-2 justify-center items-center hover:bg-[var(--hover-color)]  rounded;
+}
+.side-bar-link.router-link-active.router-link-exact-active {
+  @apply bg-[var(--hover-color)];
+}
+
+.main-content-wrapper {
+  @apply h-dvh  overflow-hidden;
+}
+.main-inner-wrapper {
+  @apply relative h-[calc(100dvh-60px)] bg-[var(--secondary-color)] overflow-hidden;
+}
+
+.toggle-button {
+  @apply absolute top-1/2 right-[-18px] -translate-x-1/2 -translate-y-1/2 w-[10px] z-30 cursor-pointer text-[var(--primary-color)];
+}
+
+.image-container {
+  @apply h-[150px] w-full;
+}
+.image-container img {
+  @apply h-full w-full;
+}
+
+.form-custom-input {
+  @apply w-full mb-2 h-[35px] autofill:bg-transparent bg-transparent border border-[var(--primary-text)] rounded focus:outline-none focus:border-[var(--primary-color)] text-[var(--primary-text)] px-2 placeholder:text-[var(--primary-text)];
+}
+
+.form-custom-label {
+  @apply block mb-2 text-[var(--primary-text)];
+}
+.form-input-wrapper {
+  @apply mb-3;
+}
+.main-heading {
+  @apply text-[30px] text-[var(--primary-text)] text-center mb-0;
+}
+
+.primary-button {
+  @apply bg-[var(--primary-text)] px-3 py-1 rounded max-w-fit text-[var(--primary-color)] cursor-pointer flex items-center gap-1  disabled:cursor-not-allowed;
+}
+.primary-button .button-text {
+  @apply line-clamp-1 capitalize font-semibold;
+}
