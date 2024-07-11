@@ -4,8 +4,9 @@ import { useRouter } from 'vue-router'
 import { useUserAuthStore } from '@/stores/userAuth'
 import LoaderCircle from '@/components/CircleLoader.vue'
 import { useToast } from 'vue-toastification'
-import { auth } from '@/fireBase.config'
-import { signInWithEmailAndPassword } from 'firebase/auth'  
+import { auth } from '@/firebase-config'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+
 const toast = useToast()
 const userAuthStore = useUserAuthStore()
 const router = useRouter()
@@ -13,31 +14,35 @@ const userInfo = ref({
   email: '',
   password: ''
 })
-async function UserLogin() { 
-  userAuthStore.loader = true 
+
+async function UserLogin() {
+  userAuthStore.loader = true
   if (userInfo.value.email === '' || userInfo.value.password === '') {
     userAuthStore.loader = false
-    toast.error('Fill all the feilds')
+    toast.error('Fill all the fields')
   } else {
     try {
-      const userData = await signInWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         auth,
         userInfo.value.email,
         userInfo.value.password
       )
-      toast.success('User logined successfully')
-      console.log(userData.user.accessToken)
+      toast.success('User logged in successfully')
+      const idToken = await userCredential.user.getIdToken() // Get the ID token
+      console.log(idToken)
       userAuthStore.isUserLogin = true
-      userAuthStore.UserToken = userData.user.accessToken
+      userAuthStore.UserToken = idToken // Use the ID token
       router.push('/')
     } catch (error) {
-      toast.error(error.message)
+      const errorMessage = (error as Error).message
+      toast.error(errorMessage)
     } finally {
       userAuthStore.loader = false
     }
   }
 }
 </script>
+
 <template>
   <div class="h-full login-wrapper relative flex items-center justify-center">
     <div

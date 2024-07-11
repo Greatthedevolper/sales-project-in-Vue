@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import LoaderCircle from '@/components/CircleLoader.vue'
 import { useToast } from 'vue-toastification'
-import { auth } from '@/fireBase.config'
+import { auth } from '@/firebase-config'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 const loader = ref(false)
 const toast = useToast()

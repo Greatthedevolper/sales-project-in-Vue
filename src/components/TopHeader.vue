@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watch, onBeforeMount } from 'vue'
-import { auth } from '@/fireBase.config'
+import { auth } from '@/firebase-config'
 import { signOut } from 'firebase/auth'
 import { useUserAuthStore } from '@/stores/userAuth'
 import { useToast } from 'vue-toastification'
@@ -21,9 +21,7 @@ function searchVisible() {
 function changeTheme() {
   IsColored.value = true
 }
-function userLogin() {
-  alert('Coming Soon')
-}
+
 function getNotification() {
   alert('notification')
 }
@@ -39,7 +37,7 @@ function searchOnScreenSize() {
 }
 async function logoutUser() {
   try {
-    const userIsSignouted = await signOut(auth)
+    await signOut(auth)
     userAuthStore.isUserLogin = false
     userAuthStore.UserToken = null
     toast.success('Logout successfully!')

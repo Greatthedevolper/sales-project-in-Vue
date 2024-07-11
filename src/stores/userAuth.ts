@@ -6,7 +6,7 @@ export const useUserAuthStore = defineStore(
   () => {
     const isUserLogin = ref(false)
     const loader = ref(false)
-    const UserToken = ref(null)
+    const UserToken = ref('')
     const bgColor = ref('#581c87')
     return {
       isUserLogin,
