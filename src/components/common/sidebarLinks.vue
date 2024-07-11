@@ -1,9 +1,14 @@
 <script setup lang="ts">
-defineProps<{
+import { defineProps } from 'vue'
+
+const props = defineProps<{
   link?: string
   likes?: number
 }>()
+
+const link = props.link ?? ''
 </script>
+
 <template>
   <router-link :to="link" class="side-bar-link">
     <slot name="icon"></slot>
