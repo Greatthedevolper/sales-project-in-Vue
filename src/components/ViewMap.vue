@@ -4,12 +4,12 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-
+import '@types/google.maps'
 export default defineComponent({
   name: 'GoogleMap',
   setup() {
     const mapContainer = ref<HTMLElement | null>(null)
-
+    const marker = ref<google.maps.Marker | null>(null)
     const initMap = () => {
       if (mapContainer.value) {
         const mapOptions: google.maps.MapOptions = {
@@ -20,7 +20,7 @@ export default defineComponent({
         const map = new google.maps.Map(mapContainer.value, mapOptions)
 
         // Add a marker
-        const marker = new google.maps.Marker({
+        marker.value = new google.maps.Marker({
           position: { lat: 55.6761, lng: 12.5683 },
           map: map,
           title: 'Copenhagen'

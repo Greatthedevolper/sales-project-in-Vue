@@ -39,7 +39,7 @@ async function logoutUser() {
   try {
     await signOut(auth)
     userAuthStore.isUserLogin = false
-    userAuthStore.UserToken = null
+    userAuthStore.UserToken = ''
     toast.success('Logout successfully!')
     router.push('/login')
   } catch (error) {

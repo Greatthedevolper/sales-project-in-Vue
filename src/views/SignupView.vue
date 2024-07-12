@@ -21,7 +21,8 @@ async function UserSignup() {
       toast.success('signup successfully')
       console.log(userCredential.user)
     } catch (error) {
-      toast.error(error.message)
+      const errorMessage = (error as Error).message
+      toast.error(errorMessage)
     } finally {
       loader.value = false
     }
