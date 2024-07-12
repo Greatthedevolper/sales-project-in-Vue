@@ -4,12 +4,13 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import '@types/google.maps'
+
 export default defineComponent({
   name: 'GoogleMap',
   setup() {
     const mapContainer = ref<HTMLElement | null>(null)
     const marker = ref<google.maps.Marker | null>(null)
+
     const initMap = () => {
       if (mapContainer.value) {
         const mapOptions: google.maps.MapOptions = {
@@ -33,7 +34,9 @@ export default defineComponent({
       script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry,drawing,places&language=da`
       script.async = true
       script.defer = true
-      script.onload = initMap
+      script.onload = () => {
+        initMap()
+      }
       document.head.appendChild(script)
     })
 
