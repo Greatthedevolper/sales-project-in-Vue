@@ -42,7 +42,7 @@ onBeforeMount(() => {
 <template>
   <header class="bg-[var(--primary-color)] h-[60px] py-3 border-b border-[var(--hover-color)]">
     <div
-      class="container-full px-4 flex items-center justify-between h-full border- border-white gap-3"
+      class="container-full px-4 flex items-center justify-end h-full border- border-white gap-3"
     >
       <div class="flex items-center gap-4">
         <div class="flex items-center gap-1" role="button" @click="changeTheme()">
