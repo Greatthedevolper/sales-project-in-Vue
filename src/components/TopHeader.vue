@@ -44,11 +44,6 @@ onBeforeMount(() => {
     <div
       class="container-full px-4 flex items-center justify-between h-full border- border-white gap-3"
     >
-      <form
-        action="#"
-        class="max-w-[304px] transition-all"
-        :class="{ 'w-[40px]': !openSearch, 'w-full': openSearch }"
-      ></form>
       <div class="flex items-center gap-4">
         <div class="flex items-center gap-1" role="button" @click="changeTheme()">
           <span class="text-[var(--primary-text)] w-6 h-6 inline-flex">
