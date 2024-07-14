@@ -1,40 +1,22 @@
 <script setup lang="ts">
-import { ref, onMounted, watch, onBeforeMount } from 'vue'
+import { onBeforeMount, computed } from 'vue'
 import { auth } from '@/firebase-config'
 import { signOut } from 'firebase/auth'
 import { useUserAuthStore } from '@/stores/userAuth'
 import { useToast } from 'vue-toastification'
-import SearchIcon from '@/components/icons/IconSearch.vue'
 import NotificationIcon from '@/components/icons/IconNotificationBell.vue'
-import ColorIcon from '@/components/icons/IconColor.vue'
-import palleteColor from '@/components/ColorPallete.vue'
-const openSearch = ref(true)
+import MoonIcon from '@/components/icons/IconMoon.vue'
+import SunIcon from '@/components/icons/IconSun.vue'
 const userAuthStore = useUserAuthStore()
 const toast = useToast()
-const IsColored = ref(false)
+const theme = computed(() => userAuthStore.theme)
 import { useRouter } from 'vue-router'
 const router = useRouter()
-
-function searchVisible() {
-  openSearch.value = true
-}
-function changeTheme() {
-  IsColored.value = true
-}
 
 function getNotification() {
   alert('notification')
 }
-function searchProducts() {
-  alert('dskafhlsdkhfkj')
-}
-function searchOnScreenSize() {
-  if (window.innerWidth < 550) {
-    openSearch.value = false
-  } else {
-    openSearch.value = true
-  }
-}
+
 async function logoutUser() {
   try {
     await signOut(auth)
@@ -46,33 +28,19 @@ async function logoutUser() {
     toast.success(error)
   }
 }
-function ClosePallete() {
-  IsColored.value = false
+
+function changeTheme() {
+  userAuthStore.theme = userAuthStore.theme === 'light' ? 'dark' : 'light'
+  document.documentElement.classList.toggle('dark', userAuthStore.theme === 'dark')
+  document.documentElement.classList.toggle('light', userAuthStore.theme === 'light')
 }
 
-function changeColor(color: string) {
-  userAuthStore.bgColor = color
-  document.documentElement.style.setProperty('--chngeable-color', userAuthStore.bgColor)
-}
-onMounted(() => {
-  window.addEventListener('load', () => {
-    searchOnScreenSize()
-    // changeColor(userAuthStore.bgColor)
-  })
-  window.addEventListener('orientationchange', searchOnScreenSize)
-})
 onBeforeMount(() => {
-  changeColor(userAuthStore.bgColor)
+  document.documentElement.classList.add(userAuthStore.theme)
 })
-watch(
-  () => userAuthStore.bgColor,
-  (newValue) => {
-    document.documentElement.style.setProperty('--chngeable-color', newValue)
-  }
-)
 </script>
 <template>
-  <header class="bg-[var(--primary-color)] h-[60px] py-3">
+  <header class="bg-[var(--primary-color)] h-[60px] py-3 border-b border-[var(--hover-color)]">
     <div
       class="container-full px-4 flex items-center justify-between h-full border- border-white gap-3"
     >
@@ -80,30 +48,12 @@ watch(
         action="#"
         class="max-w-[304px] transition-all"
         :class="{ 'w-[40px]': !openSearch, 'w-full': openSearch }"
-      >
-        <div
-          class="relative flex items-center rounded border border-[var(--primary-text)] focus-within:border-purple-700"
-        >
-          <span
-            role="button"
-            @click="searchVisible()"
-            class="text-[var(--primary-text)] h-full inline-flex px-2"
-          >
-            <SearchIcon class="w-[18px]" />
-          </span>
-          <input
-            type="text"
-            name=""
-            id=""
-            class="transition-all h-[32px] bg-transparent text-sm text-[var(--primary-text)] pe-2 focus:outline-0 w-full"
-            @input="searchProducts()"
-          />
-        </div>
-      </form>
+      ></form>
       <div class="flex items-center gap-4">
         <div class="flex items-center gap-1" role="button" @click="changeTheme()">
           <span class="text-[var(--primary-text)] w-6 h-6 inline-flex">
-            <ColorIcon />
+            <MoonIcon v-if="theme === 'light'" />
+            <SunIcon v-else />
           </span>
           <span class="text-sm text-[var(--primary-text)]">Theme</span>
         </div>
@@ -127,6 +77,5 @@ watch(
         >
       </div>
     </div>
-    <palleteColor v-if="IsColored" @colorSelected="changeColor" @modalClose="ClosePallete" />
   </header>
 </template>

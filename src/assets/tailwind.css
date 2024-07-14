@@ -3,10 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --chngeable-color: #581c87;
-  --primary-color: var(--chngeable-color, #581c87);
-  --hover-color: #3b0764;
-  --primary-text: #f3e8ff;
+  /* --chngeable-color: #e3391a; 6A59FF  280072*/
+  --primary-color: var(--chngeable-color, #fff);
+  --hover-color: #000;
+  --hover-text: #fff;
+  --primary-text: #000;
+  --secondary-color: #d8b4fe;
+}
+.dark {
+  --primary-color: #000;
+  --hover-color: #fff;
+  --hover-text: #000;
+  --primary-text: #fff;
   --secondary-color: #d8b4fe;
 }
 
@@ -14,17 +22,17 @@
   @apply bg-[var(--primary-color)] py-4 px-3 relative border-e border-[var(--hover-color)];
 }
 .side-bar-link {
-  @apply flex relative text-[var(--primary-text)] gap-2 justify-center items-center hover:bg-[var(--hover-color)]  rounded;
+  @apply flex relative text-[var(--primary-text)] gap-2 justify-center items-center hover:bg-[var(--hover-color)] hover:text-[var(--hover-text)]  rounded;
 }
 .side-bar-link.router-link-active.router-link-exact-active {
-  @apply bg-[var(--hover-color)];
+  @apply bg-[var(--hover-color)] text-[var(--hover-text)];
 }
 
 .main-content-wrapper {
   @apply h-dvh  overflow-hidden;
 }
 .main-inner-wrapper {
-  @apply relative h-[calc(100dvh-60px)] bg-[var(--secondary-color)] overflow-hidden;
+  @apply relative h-[calc(100dvh-60px)] bg-[var(--primary-color)] overflow-hidden;
 }
 
 .toggle-button {

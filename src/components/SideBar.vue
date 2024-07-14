@@ -43,6 +43,11 @@ const mainMenu = ref([
     label: 'Products',
     link: '/product',
     icon: markRaw(AboutIcon)
+  },
+  {
+    label: 'Map',
+    link: '/map',
+    icon: markRaw(AboutIcon)
   }
 ])
 </script>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import TableView from '@/components/VueTable.vue'
+import ProuctWrapper from '../components/prouctWrapper.vue'
 </script>
 <template>
-  <div class="container-full px-4 my-4 max-w-full">
+  <div class="container-full px-4 max-w-full overflow-auto h-[calc(100%-2px)]">
     <h1>sure This is an about page</h1>
-    <TableView />
+    <ProuctWrapper />
   </div>
 </template>
 

@@ -7,12 +7,12 @@ export const useUserAuthStore = defineStore(
     const isUserLogin = ref(false)
     const loader = ref(false)
     const UserToken = ref('')
-    const bgColor = ref('#581c87')
+    const theme = ref('light')
     return {
       isUserLogin,
       loader,
       UserToken,
-      bgColor
+      theme
     }
   },
   {

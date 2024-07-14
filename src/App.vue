@@ -40,7 +40,7 @@ import ImageBg from '@/components/icons/BgImage.vue'
 <style scoped>
 .main-inner-wrapper {
   position: relative;
-  background: linear-gradient(60deg, var(--primary-color) 0%, var(--hover-color) 100%);
+  /* background: linear-gradient(60deg, var(--primary-color) 0%, var(--hover-color) 100%); */
 
   .waves {
     position: absolute;
