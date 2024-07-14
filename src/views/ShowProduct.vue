@@ -48,13 +48,13 @@ onMounted(() => {
         </h3>
         <div>
           <span
-            class="rounded-full text-[var(--primary-text)] bg-[var(--primary-color)] py-2 px-3 capitalize"
+            class="rounded-full text-[var(--hover-text)] bg-[var(--hover-color)] py-2 px-3 capitalize"
             >{{ product.category }}</span
           >
         </div>
       </div>
       <carousel v-bind="settings" :breakpoints="carouselBreakpoints" class="cursor-pointer">
-        <slide v-for="image in product.images" :key="product.id">
+        <slide v-for="image in product.images" v-bind:key="product.id">
           <img :src="image" class="h-[300px]" />
         </slide>
 
@@ -64,7 +64,7 @@ onMounted(() => {
         </template>
       </carousel>
       <div class="py-4">
-        <p class="text-lg">{{ product.description }}</p>
+        <p class="text-lg text-[var(--primary-text)]">{{ product.description }}</p>
       </div>
     </div>
     <div v-else>loading...</div>

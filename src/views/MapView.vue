@@ -2,6 +2,6 @@
 import mapview from '@/components/ViewMap.vue'
 </script>
 <template>
-  <h1>I am map</h1>
+  <h1 class="text-[var(--primary-text)]">I am map</h1>
   <mapview />
 </template>

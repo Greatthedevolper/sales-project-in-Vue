@@ -11,7 +11,7 @@
       />
     </GMapCluster>
   </GMapMap> -->
-  <h1>hi</h1>
+  <h1 class="text-[var(--primary-text)]">hi</h1>
 </template>
 
 <script setup lang="ts"></script>
