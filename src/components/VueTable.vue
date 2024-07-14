@@ -46,7 +46,7 @@ watch(
   (newVal) => {
     if (newVal && Array.isArray(newVal)) {
       items.value = newVal.map((product) => ({
-        // id: product.id,
+        id: product.id,
         title: product.title,
         category: product.category,
         price: `${product.price}$`,
