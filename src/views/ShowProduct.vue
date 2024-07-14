@@ -54,7 +54,7 @@ onMounted(() => {
         </div>
       </div>
       <carousel v-bind="settings" :breakpoints="carouselBreakpoints" class="cursor-pointer">
-        <slide v-for="image in product.images" v-bind:key="product.id">
+        <slide v-for="(image, index) in product.images" v-bind:key="index">
           <img :src="image" class="h-[300px]" />
         </slide>
 
