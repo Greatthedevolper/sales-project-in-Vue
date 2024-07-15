@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
-
+import LoaderCircle from '@/components/common/CircleLoader.vue'
 interface Product {
   id: number
   title: string
@@ -47,10 +47,11 @@ onMounted(() => {
           {{ product.title }}
         </h3>
         <div>
-          <span
+          <router-link
+            :to="`/single-category?category=${product.category}`"
             class="rounded-full text-[var(--hover-text)] bg-[var(--hover-color)] py-2 px-3 capitalize"
-            >{{ product.category }}</span
-          >
+            >{{ product.category }}
+          </router-link>
         </div>
       </div>
       <carousel v-bind="settings" :breakpoints="carouselBreakpoints" class="cursor-pointer">
@@ -67,6 +68,8 @@ onMounted(() => {
         <p class="text-lg text-[var(--primary-text)]">{{ product.description }}</p>
       </div>
     </div>
-    <div v-else>loading...</div>
+    <template v-else>
+      <LoaderCircle />
+    </template>
   </div>
 </template>

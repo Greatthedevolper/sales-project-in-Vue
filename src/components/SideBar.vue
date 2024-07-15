@@ -2,10 +2,12 @@
 import { ref, markRaw, onBeforeMount, onUnmounted } from 'vue'
 import customLink from '@/components/common/sidebarLinks.vue'
 import HomeIcon from '@/components/icons/IconHome.vue'
-import AboutIcon from '@/components/icons/IconAbout.vue'
 import MainLogo from '@/components/logos/mainLogo.png'
 import MobileLogo from '@/components/logos/mobileLogo.png'
 import ToggleIcon from '@/components/icons/IconMenu.vue'
+import TableIcon from '@/components/icons/IconTable.vue'
+import GlobeIcon from '@/components/icons/IconGlobe.vue'
+import ProductIcon from '@/components/icons/IconProducts.vue'
 
 const openSidebar = ref(false)
 function toggleSideBar() {
@@ -35,19 +37,19 @@ const mainMenu = ref([
     icon: markRaw(HomeIcon)
   },
   {
-    label: 'About',
+    label: 'Table View',
     link: '/about',
-    icon: markRaw(AboutIcon)
+    icon: markRaw(TableIcon)
   },
   {
     label: 'Products',
     link: '/product',
-    icon: markRaw(AboutIcon)
+    icon: markRaw(ProductIcon)
   },
   {
     label: 'Map',
     link: '/map',
-    icon: markRaw(AboutIcon)
+    icon: markRaw(GlobeIcon)
   }
 ])
 </script>
@@ -79,7 +81,7 @@ const mainMenu = ref([
       </customLink>
     </div>
     <span
-      class="toggle-button hidden md:block "
+      class="toggle-button hidden md:block"
       type="button"
       @click="toggleSideBar()"
       :class="{ 'rotate-0': openSidebar, 'rotate-180': !openSidebar }"
