@@ -4,16 +4,16 @@
 
 :root {
   /* --chngeable-color: #e3391a; 6A59FF  280072*/
-  --primary-color: var(--chngeable-color, #fff);
-  --hover-color: #000;
+  --primary-color: var(--chngeable-color, #ddf4ff);
+  --hover-color: #0871a3;
   --hover-text: #fff;
-  --primary-text: #000;
+  --primary-text: #1f2328;
   --secondary-color: #d8b4fe;
 }
 .dark {
-  --primary-color: #000;
-  --hover-color: #fff;
-  --hover-text: #000;
+  --primary-color: #0871a3;
+  --hover-color: #ddf4ff;
+  --hover-text: #1f2328;
   --primary-text: #fff;
   --secondary-color: #d8b4fe;
 }
@@ -36,7 +36,7 @@
 }
 
 .toggle-button {
-  @apply absolute top-1/2 right-[-18px] -translate-x-1/2 -translate-y-1/2 w-[10px] z-30 cursor-pointer text-[var(--primary-color)];
+  @apply absolute top-1/2 right-[-18px] -translate-x-1/2 -translate-y-1/2 w-[10px] z-30 cursor-pointer text-[var(--hover-color)];
 }
 
 .image-container {

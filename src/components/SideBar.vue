@@ -79,7 +79,7 @@ const mainMenu = ref([
       </customLink>
     </div>
     <span
-      class="toggle-button hidden md:block"
+      class="toggle-button hidden md:block "
       type="button"
       @click="toggleSideBar()"
       :class="{ 'rotate-0': openSidebar, 'rotate-180': !openSidebar }"

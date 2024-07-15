@@ -3,7 +3,7 @@
     <path
       fill="transparent"
       d="M2 22L7 12L2 2"
-      stroke="#fff"
+      stroke="var(--hover-color)"
       stroke-linecap="round"
       stroke-linejoin="round"
       stroke-width="4"
