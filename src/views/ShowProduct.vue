@@ -8,29 +8,35 @@ import LoaderCircle from '@/components/common/CircleLoader.vue'
 import ArrowIcon from '@/components/icons/IconArrow.vue'
 import { useCartStore } from '@/stores/cart'
 import { format } from 'date-fns'
+
 interface Review {
   reviewerName: string
   comment: string
   rating: number
   date: string
 }
+
 interface Product {
   id: number
   title: string
   images: string[]
   description: string
   category: string
-  brand: String
-  price: String
-  stock: String
-  rating: String
-  availabilityStatus: String
+  brand: string
+  price: string
+  stock: string
+  rating: string
+  availabilityStatus: string
   reviews: Review[]
-  quantity: String
-  reviewerName: String
-  comment: String
 }
+
+interface CartItem extends Product {
+  quantity: number
+}
+
 const cartStore = useCartStore()
+const StoreItems = ref<CartItem[]>(cartStore.addedCartItems)
+
 const route = useRoute()
 const router = useRouter()
 const alreadyAdded = ref(false)
@@ -52,22 +58,26 @@ const settings = {
   autoplay: 3000,
   transition: 500
 }
+
 function goBack() {
   router.go(-1)
 }
-function ShowReviewModal() {
+
+function showReviewModal() {
   reviewModal.value = true
 }
+
 function closeReviewModal() {
   reviewModal.value = false
 }
+
 function addToCart(product: Product) {
-  const existingProduct = cartStore.addedCartItems.find((item) => item.id === product.id)
+  const existingProduct = StoreItems.value.find((item) => item.id === product.id)
   if (existingProduct) {
     alreadyAdded.value = true
     existingProduct.quantity += 1
   } else {
-    cartStore.addedCartItems.push({ ...product, quantity: 1 })
+    StoreItems.value.push({ ...product, quantity: 1 })
     alert(' added')
   }
 }
@@ -145,7 +155,7 @@ onMounted(() => {
           <span v-if="!alreadyAdded">Add To Cart</span>
           <span v-else>Added</span>
         </button>
-        <span role="button" @click="ShowReviewModal">Show Reviews</span>
+        <span role="button" @click="showReviewModal">Show Reviews</span>
       </div>
       <div v-if="reviewModal" class="small-modal">
         <div class="inner-layer" @click="closeReviewModal"></div>
