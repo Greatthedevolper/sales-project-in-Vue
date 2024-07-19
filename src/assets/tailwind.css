@@ -36,7 +36,7 @@
 }
 
 .toggle-button {
-  @apply absolute top-1/2 right-[-18px] -translate-x-1/2 -translate-y-1/2 w-[10px] z-30 cursor-pointer text-[var(--hover-color)];
+  @apply absolute top-[30px] right-[-18px] -translate-x-1/2 -translate-y-1/2 w-[10px] z-30 cursor-pointer text-[var(--hover-color)];
 }
 
 .image-container {
@@ -65,4 +65,29 @@
 }
 .primary-button .button-text {
   @apply line-clamp-1 capitalize font-semibold;
+}
+
+.span-badge {
+  @apply rounded-full text-[var(--hover-text)] bg-[var(--hover-color)] py-1 px-3 capitalize;
+}
+.span-badge-text {
+  @apply text-lg font-semibold text-[var(--hover-color)];
+}
+.small-modal {
+  @apply fixed  inset-0 flex items-center justify-center;
+}
+.small-modal .inner-layer {
+  @apply w-full h-full  absolute z-10 bg-[#000000dd];
+}
+.small-modal .small-inner-modal {
+  @apply bg-[var(--primary-color)] rounded border border-[var(--hover-color)] max-w-[300px] w-full relative z-20 py-2 max-h-[300px] h-full overflow-hidden;
+}
+.small-modal .small-inner-modal > strong {
+  @apply text-lg text-[var(--hover-color)] px-2;
+}
+.small-modal .small-inner-modal > ul {
+  @apply flex flex-col gap-2 overflow-y-auto h-[calc(300px-50px)] p-2;
+}
+.small-modal .small-inner-modal > ul li {
+  @apply flex flex-col gap-1 text-[var(--hover-color)] rounded border border-[var(--hover-color)] p-2;
 }

@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import productSingle from '@/components/common/singleProduct.vue'
+
 import TableView from '@/components/VueTable.vue'
+import GridView from '@/components/GridView.vue'
 import LoaderCircle from '@/components/common/CircleLoader.vue'
 
 const products = ref([])
-
+const isTableView = ref(true)
+function ChangeView(view: 'table' | 'grid') {
+  isTableView.value = view === 'table'
+}
 onMounted(() => {
   fetch('https://dummyjson.com/products?limit=0')
     .then((res) => res.json())
     .then((json) => {
       products.value = json.products
-      console.log(products.value[0])
     })
 })
 </script>
@@ -21,14 +24,30 @@ onMounted(() => {
     <LoaderCircle />
   </template>
   <template v-else>
-    <ul
-      v-if="$route.name == 'products'"
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-5 gap-y-5"
-    >
-      <li v-for="(product, index) in products" :key="`product-${index}`">
-        <productSingle :productData="product"></productSingle>
-      </li>
-    </ul>
-    <TableView v-if="$route.name == 'about'" :productData="products" />
+    <div class="flex items-center gap-2 mb-2 justify-end md:absolute right-4 top-0">
+      <button
+        class="border-0 rounded px-2 py-1 transition-all"
+        :class="{
+          'bg-[var(--hover-color)] text-[var(--hover-text)]': isTableView,
+          'text-[var(--primary-text)]': !isTableView
+        }"
+        @click="ChangeView('table')"
+      >
+        Table View
+      </button>
+      <button
+        class="border-0 rounded px-2 py-1 transition-all"
+        :class="{
+          'bg-[var(--hover-color)] text-[var(--hover-text)]': !isTableView,
+          'text-[var(--primary-text)]': isTableView
+        }"
+        @click="ChangeView('grid')"
+      >
+        Grid View
+      </button>
+    </div>
+    <GridView v-if="isTableView" :gridData="products"></GridView>
+
+    <TableView v-if="!isTableView" :productData="products" />
   </template>
 </template>

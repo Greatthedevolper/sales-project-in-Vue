@@ -36,11 +36,11 @@ const mainMenu = ref([
     link: '/',
     icon: markRaw(HomeIcon)
   },
-  {
-    label: 'Table View',
-    link: '/about',
-    icon: markRaw(TableIcon)
-  },
+  // {
+  //   label: 'Table View',
+  //   link: '/about',
+  //   icon: markRaw(TableIcon)
+  // },
   {
     label: 'Products',
     link: '/product',

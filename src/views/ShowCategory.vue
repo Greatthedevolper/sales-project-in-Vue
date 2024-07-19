@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-bind="$attrs">
+  <div v-bind="$attrs" class="container-full px-2 pb-4 pt-5 max-w-[96%] mx-auto h-full">
     <template v-if="category">
       <h3>{{ route.query.category }}</h3>
       <ul
