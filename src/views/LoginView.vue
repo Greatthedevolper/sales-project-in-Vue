@@ -93,7 +93,7 @@ function githubSignIn() {
       <div class="mt-5">
         <div class="relative border border-[var(--hover-color)] border-b-0">
           <span
-            class="absolute start-1/2 top-[-3px] -translate-x-1/2 -translate-y-1/2 inline-block bg-[var(--primary-color)] p-1"
+            class="absolute start-1/2 top-[-3px] -translate-x-1/2 -translate-y-1/2 inline-block bg-[var(--primary-color)] p-1 text-[var(--hover-color)]"
             >Continue With</span
           >
         </div>
