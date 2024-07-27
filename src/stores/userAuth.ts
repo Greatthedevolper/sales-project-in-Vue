@@ -15,7 +15,7 @@ export const useUserAuthStore = defineStore(
     const loader = ref(false)
     const UserToken = ref('')
     const theme = ref('light')
-    const userDetails = ref<UserDetails | null>([''])
+    const userDetails = ref<UserDetails | null>(null)
 
     return {
       isUserLogin,
