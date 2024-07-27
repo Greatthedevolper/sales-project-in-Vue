@@ -59,7 +59,7 @@ const mainMenu = ref([
       <div v-if="!openSidebar" class="image-container">
         <img :src="MainLogo" />
       </div>
-      <div v-else class="min-w-[40px] min-h-[40px] rounded-full backdrop-invert">
+      <div v-else class="min-w-[40px] min-h-[40px] rounded-full">
         <img :src="MobileLogo" />
       </div>
     </router-link>
