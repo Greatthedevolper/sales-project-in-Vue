@@ -38,7 +38,7 @@ const userInfo = ref({
 <template>
   <div class="h-full signup-wrapper flex items-center justify-center">
     <div
-      class="relative z-20 flex flex-col gap-2 bg-[var(--hover-color)] p-4 rounded max-w-[340px] w-full"
+      class="relative z-20 flex flex-col gap-2 bg-[var(--primary-color)] p-4 rounded max-w-[340px] w-full"
     >
       <h1 class="main-heading">Sign up Here</h1>
       <form action="#" class="w-full" @submit.prevent="UserSignup()">
@@ -77,10 +77,8 @@ const userInfo = ref({
             </span>
           </button>
           <div class="flex items-center">
-            <p class="me-1 text-[var(--primary-text)]">Already Have account?</p>
-            <router-link to="/login" class="underline text-[var(--primary-text)]"
-              >Login</router-link
-            >
+            <p class="me-1 primary-text">Already Have account?</p>
+            <router-link to="/login" class="underline primary-text">Login</router-link>
           </div>
         </div>
       </form>

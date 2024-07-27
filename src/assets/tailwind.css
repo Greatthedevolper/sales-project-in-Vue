@@ -51,7 +51,7 @@
 }
 
 .form-custom-label {
-  @apply block mb-2 text-[var(--primary-text)];
+  @apply block mb-2 text-[var(--hover-color)];
 }
 .form-input-wrapper {
   @apply mb-3;
