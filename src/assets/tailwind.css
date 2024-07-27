@@ -4,16 +4,16 @@
 
 :root {
   /* --chngeable-color: #e3391a; 6A59FF  280072*/
-  --primary-color: var(--chngeable-color, #ddf4ff);
-  --hover-color: #0871a3;
+  --primary-color: var(--chngeable-color, #f5f5f5);
+  --hover-color: #000;
   --hover-text: #fff;
-  --primary-text: #1f2328;
-  --secondary-color: #d8b4fe;
+  --primary-text: #00000080;
+  --secondary-color: #000;
 }
 .dark {
-  --primary-color: #0871a3;
-  --hover-color: #ddf4ff;
-  --hover-text: #1f2328;
+  --primary-color: #000;
+  --hover-color: #f5f5f5;
+  --hover-text: #000;
   --primary-text: #fff;
   --secondary-color: #d8b4fe;
 }
@@ -22,14 +22,14 @@
   @apply bg-[var(--primary-color)] py-4 px-3 relative border-e border-[var(--hover-color)];
 }
 .side-bar-link {
-  @apply flex relative text-[var(--primary-text)] gap-2 justify-center items-center hover:bg-[var(--hover-color)] hover:text-[var(--hover-text)]  rounded;
+  @apply flex relative text-[var(--hover-color)] gap-2 justify-center items-center hover:bg-[var(--hover-color)] hover:text-[var(--hover-text)]  rounded;
 }
 .side-bar-link.router-link-active.router-link-exact-active {
   @apply bg-[var(--hover-color)] text-[var(--hover-text)];
 }
 
 .main-content-wrapper {
-  @apply h-dvh  overflow-hidden;
+  @apply h-dvh  overflow-hidden select-none transition-all;
 }
 .main-inner-wrapper {
   @apply relative h-[calc(100dvh-60px)] bg-[var(--primary-color)] overflow-hidden;
@@ -57,11 +57,14 @@
   @apply mb-3;
 }
 .main-heading {
-  @apply text-[30px] text-[var(--primary-text)] text-center mb-0;
+  @apply text-[32px] font-bold text-[var(--hover-color)] text-center mb-0;
+}
+.heading-text {
+  @apply text-[12px]  text-[var(--hover-color)] text-center mb-0;
 }
 
 .primary-button {
-  @apply bg-[var(--primary-text)] px-3 py-1 rounded max-w-fit text-[var(--primary-color)] cursor-pointer flex items-center gap-1  disabled:cursor-not-allowed;
+  @apply bg-[var(--hover-color)] px-3 py-1 rounded max-w-fit text-[var(--hover-text)] cursor-pointer flex items-center gap-1  disabled:cursor-not-allowed;
 }
 .primary-button .button-text {
   @apply line-clamp-1 capitalize font-semibold;
@@ -90,4 +93,30 @@
 }
 .small-modal .small-inner-modal > ul li {
   @apply flex flex-col gap-1 text-[var(--hover-color)] rounded border border-[var(--hover-color)] p-2;
+}
+.primary-text {
+  @apply text-[var(--hover-color)];
+}
+
+.dashboard-container {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5;
+}
+.dashboard-container .dashboard-card {
+  @apply border border-[var(--hover-color)] rounded p-2  w-full;
+}
+
+.profile-icon-wrapper {
+  @apply inline-flex h-[40px] w-[40px] relative cursor-pointer;
+}
+.profile-icon-wrapper:after {
+  content: '❮';
+  position: absolute;
+  top: 50%;
+  right: -12px;
+  transform: translateY(-50%) rotate(270deg);
+  color: var(--hover-color);
+}
+
+.profile-menu-wrapper {
+  @apply absolute right-0 top-full translate-y-1/2 p-2 z-50 w-[200px] py-2 bg-[var(--primary-color)] text-[var(--hover-color)] rounded shadow-md border border-[var(--hover-color)] flex flex-col gap-2;
 }

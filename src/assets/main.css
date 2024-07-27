@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 220px 1fr;
   height: 100%;
-  /* transition: all 0.2s ease-in-out; */
+  /* transition: all 0.2s ease-out; */
   &:has(aside.active) {
     grid-template-columns: 60px 1fr;
   }

@@ -5,11 +5,10 @@ import HomeIcon from '@/components/icons/IconHome.vue'
 import MainLogo from '@/components/logos/mainLogo.png'
 import MobileLogo from '@/components/logos/mobileLogo.png'
 import ToggleIcon from '@/components/icons/IconMenu.vue'
-import TableIcon from '@/components/icons/IconTable.vue'
 import GlobeIcon from '@/components/icons/IconGlobe.vue'
 import ProductIcon from '@/components/icons/IconProducts.vue'
 
-const openSidebar = ref(false)
+const openSidebar = ref(true)
 function toggleSideBar() {
   openSidebar.value = !openSidebar.value
 }
@@ -18,7 +17,7 @@ function sidebarOnScreenSize() {
   if (window.innerWidth < 1024) {
     openSidebar.value = true
   } else {
-    openSidebar.value = false
+    openSidebar.value = true
   }
 }
 onBeforeMount(() => {
@@ -33,7 +32,7 @@ onUnmounted(() => {
 const mainMenu = ref([
   {
     label: 'Home',
-    link: '/',
+    link: '/home',
     icon: markRaw(HomeIcon)
   },
   // {

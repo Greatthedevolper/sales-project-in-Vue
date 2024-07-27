@@ -7,43 +7,48 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'welcome',
+      component: () => import('@/views/WelcomeView.vue')
+    },
+    {
+      path: '/home',
       name: 'home',
-      component: () => import('../views/HomeView.vue')
+      component: () => import('@/views/HomeView.vue')
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/LoginView.vue')
+      component: () => import('@/views/LoginView.vue')
     },
     {
       path: '/signup',
       name: 'signup',
-      component: () => import('../views/SignupView.vue')
+      component: () => import('@/views/SignupView.vue')
     },
     {
       path: '/map',
       name: 'map',
-      component: () => import('../views/MapView.vue')
+      component: () => import('@/views/MapView.vue')
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/AboutView.vue')
+      component: () => import('@/views/AboutView.vue')
     },
     {
       path: '/product',
       name: 'products',
-      component: () => import('../views/productsPage.vue')
+      component: () => import('@/views/productsPage.vue')
     },
     {
       path: '/single-product',
       name: 'single product',
-      component: () => import('../views/ShowProduct.vue')
+      component: () => import('@/views/ShowProduct.vue')
     },
     {
       path: '/single-category',
       name: 'single category',
-      component: () => import('../views/ShowCategory.vue')
+      component: () => import('@/views/ShowCategory.vue')
     }
   ]
 })
@@ -51,7 +56,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const userAuthStore = useUserAuthStore()
   if (userAuthStore.isUserLogin || userAuthStore.UserToken) {
-    if (to.name === 'login' || to.name === 'signup') {
+    if (to.name === 'login' || to.name === 'signup' || to.name === 'welcome') {
       next({ name: 'home' })
     } else {
       next()

@@ -1,6 +1,13 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
+interface UserDetails {
+  displayName: string | null
+  email: string | null
+  photoURL: string | null
+  uid: string
+}
+
 export const useUserAuthStore = defineStore(
   'userstore',
   () => {
@@ -8,11 +15,14 @@ export const useUserAuthStore = defineStore(
     const loader = ref(false)
     const UserToken = ref('')
     const theme = ref('light')
+    const userDetails = ref<UserDetails | null>([''])
+
     return {
       isUserLogin,
       loader,
       UserToken,
-      theme
+      theme,
+      userDetails
     }
   },
   {
