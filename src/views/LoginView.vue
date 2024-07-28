@@ -54,7 +54,7 @@ function githubSignIn() {
 
 <template>
   <div class="h-full login-wrapper relative flex items-center justify-center">
-    <div class="relative z-20 flex flex-col gap-2 p-4 rounded max-w-[340px] w-full">
+    <div class="form-wrapper">
       <h1 class="main-heading">Hello Again!</h1>
       <p class="heading-text">Welcome Back You've Been Missed</p>
       <form action="#" class="w-full" @submit.prevent="UserLogin()">

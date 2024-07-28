@@ -4,7 +4,13 @@ import LoaderCircle from '@/components/CircleLoader.vue'
 import { useToast } from 'vue-toastification'
 import { auth } from '@/firebase-config'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { UserIcon } from '@heroicons/vue/24/solid'
+import { EnvelopeIcon } from '@heroicons/vue/24/solid'
+import { LockClosedIcon } from '@heroicons/vue/24/solid'
+import { EyeIcon } from '@heroicons/vue/24/solid'
+import { EyeSlashIcon } from '@heroicons/vue/24/solid'
 const loader = ref(false)
+const passwordIs = ref(false)
 const toast = useToast()
 async function UserSignup() {
   loader.value = true
@@ -28,6 +34,9 @@ async function UserSignup() {
     }
   }
 }
+function showPassword() {
+  passwordIs.value = !passwordIs.value
+}
 
 const userInfo = ref({
   name: '',
@@ -37,37 +46,53 @@ const userInfo = ref({
 </script>
 <template>
   <div class="h-full signup-wrapper flex items-center justify-center">
-    <div
-      class="relative z-20 flex flex-col gap-2 bg-[var(--primary-color)] p-4 rounded max-w-[340px] w-full"
-    >
-      <h1 class="main-heading">Sign up Here</h1>
+    <div class="form-wrapper">
+      <h1 class="main-heading">Register</h1>
+      <p class="heading-text">Sign up to get started!</p>
       <form action="#" class="w-full" @submit.prevent="UserSignup()">
         <div class="form-input-wrapper">
-          <label for="" class="form-custom-label">Name</label>
-          <input
-            type="text"
-            class="form-custom-input"
-            placeholder="Enter your Name"
-            v-model="userInfo.name"
-          />
+          <div class="form-inner-wrapper">
+            <span class="form-control-span">
+              <UserIcon />
+            </span>
+            <input
+              type="text"
+              class="form-custom-input"
+              placeholder="Enter your Name"
+              v-model="userInfo.name"
+            />
+          </div>
         </div>
         <div class="form-input-wrapper">
-          <label for="" class="form-custom-label">Email</label>
-          <input
-            type="text"
-            class="form-custom-input"
-            placeholder="Enter your Email"
-            v-model="userInfo.email"
-          />
+          <div class="form-inner-wrapper">
+            <span class="form-control-span">
+              <EnvelopeIcon />
+            </span>
+
+            <input
+              type="text"
+              class="form-custom-input"
+              placeholder="Enter your Email"
+              v-model="userInfo.email"
+            />
+          </div>
         </div>
         <div class="form-input-wrapper">
-          <label for="" class="form-custom-label">password</label>
-          <input
-            type="password"
-            class="form-custom-input"
-            placeholder="Enter your Password"
-            v-model="userInfo.password"
-          />
+          <div class="form-inner-wrapper">
+            <span class="form-control-span">
+              <LockClosedIcon />
+            </span>
+            <input
+              :type="passwordIs ? 'text' : 'password'"
+              class="form-custom-input"
+              placeholder="Enter your Password"
+              v-model="userInfo.password"
+            />
+            <span class="form-control-span right-span" role="button" @click="showPassword">
+              <EyeSlashIcon v-if="passwordIs" />
+              <EyeIcon v-else />
+            </span>
+          </div>
         </div>
         <div class="flex items-center justify-between flex-wrap gap-2">
           <button type="submit" class="primary-button" :disabled="loader">

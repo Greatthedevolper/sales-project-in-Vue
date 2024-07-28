@@ -55,6 +55,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const userAuthStore = useUserAuthStore()
+
   if (userAuthStore.isUserLogin || userAuthStore.UserToken) {
     if (to.name === 'login' || to.name === 'signup' || to.name === 'welcome') {
       next({ name: 'home' })
@@ -62,12 +63,12 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else {
-    if (to.name !== 'login' && to.name !== 'signup') {
-      next({ name: 'login' })
-      toast.error('please login first')
+    if (to.name !== 'welcome' && to.name !== 'login' && to.name !== 'signup') {
+      next({ name: 'welcome' })
     } else {
       next()
     }
   }
 })
+
 export default router

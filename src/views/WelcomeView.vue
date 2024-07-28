@@ -21,7 +21,7 @@ const router = useRouter()
 function next() {
   if (carousel.value) {
     if (currentSlide.value == 2) {
-      router.push('/home')
+      router.push('/login')
     } else {
       carousel.value.next()
     }

@@ -46,8 +46,21 @@
   @apply h-full w-full;
 }
 
-.form-custom-input {
-  @apply w-full mb-2 h-[35px] autofill:bg-transparent bg-transparent border border-[var(--primary-text)] rounded focus:outline-none focus:border-[var(--primary-color)] text-[var(--primary-text)] px-2 placeholder:text-[var(--primary-text)];
+.form-wrapper {
+  @apply relative z-20 flex flex-col gap-2 bg-[var(--primary-color)]  rounded max-w-[300px] w-full;
+}
+
+.form-inner-wrapper {
+  @apply relative border border-[var(--primary-text)] rounded focus:outline-none focus:border-[var(--primary-color)] ps-[30px];
+}
+.form-inner-wrapper .form-control-span {
+  @apply absolute top-1/2 start-[6px] -translate-y-1/2 h-[20px] w-[20px];
+}
+.form-inner-wrapper .form-control-span.right-span {
+  @apply end-[6px] start-[unset];
+}
+.form-inner-wrapper .form-custom-input {
+  @apply w-full mb-0 h-[35px] autofill:bg-transparent bg-transparent border-0 rounded focus:outline-none focus:border-[var(--primary-color)] text-[var(--primary-text)] px-2 placeholder:text-[var(--primary-text)];
 }
 
 .form-custom-label {
@@ -57,7 +70,7 @@
   @apply mb-3;
 }
 .main-heading {
-  @apply text-[32px] font-bold text-[var(--hover-color)] text-center mb-0;
+  @apply text-[32px] leading-[30px] font-bold text-[var(--hover-color)] text-center mb-0;
 }
 .heading-text {
   @apply text-[12px]  text-[var(--hover-color)] text-center mb-0;
