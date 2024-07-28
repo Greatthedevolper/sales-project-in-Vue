@@ -85,7 +85,12 @@ function githubSignIn() {
           </button>
           <div class="flex items-center">
             <p class="me-1 primary-text">Have no account?</p>
-            <router-link to="/signup" class="underline primary-text">Signup</router-link>
+            <router-link
+              to="/signup"
+              class="underline primary-text"
+              :disabled="userAuthStore.loader"
+              >Signup</router-link
+            >
           </div>
         </div>
       </form>
