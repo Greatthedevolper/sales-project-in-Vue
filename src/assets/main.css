@@ -2,15 +2,26 @@
 
 #app {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 1fr;
   height: 100%;
-  /* transition: all 0.2s ease-out; */
-  &:has(aside.active) {
-    grid-template-columns: 60px 1fr;
+  .main-content-wrapper {
+    margin-left: 60px;
+    @media (max-width: 767px) {
+      & {
+        margin-left: 0;
+      }
+    }
   }
-  @media (max-width: 767px) {
-    & {
-      grid-template-columns: 60px 1fr;
+  &:has(aside.active) {
+    .main-content-wrapper {
+      margin-left: 60px;
+    }
+  }
+  &:has(aside.mobile) {
+    @media (max-width: 767px) {
+      & {
+        grid-template-columns: 1fr;
+      }
     }
   }
 }
@@ -34,4 +45,11 @@ body {
 
 *::-webkit-scrollbar-thumb:hover {
   background: var(--hover-color);
+}
+
+input:-webkit-autofill:focus,
+input:-webkit-autofill {
+  background-color: var(--primary-color) !important;
+  -webkit-box-shadow: 0 0 0 30px var(--primary-color) inset !important;
+  -webkit-text-fill-color: var(--primary-text) !important;
 }

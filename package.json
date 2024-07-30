@@ -16,6 +16,7 @@
   "dependencies": {
     "@fawmi/vue-google-maps": "^0.9.79",
     "@heroicons/vue": "^2.1.5",
+    "@supabase/supabase-js": "^2.45.0",
     "date-fns": "^3.6.0",
     "firebase": "^9.23.0",
     "pinia": "^2.1.7",

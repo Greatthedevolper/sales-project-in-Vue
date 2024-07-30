@@ -10,13 +10,22 @@ import { useGoogleSignIn } from '@/components/useGoogleSignIn'
 import GloogleIcon from '@/components/icons/IconGoogle.vue'
 import FacebookIcon from '@/components/icons/IconFacebook.vue'
 import GithubIcon from '@/components/icons/IconGithub.vue'
+
+import { EnvelopeIcon } from '@heroicons/vue/24/solid'
+import { LockClosedIcon } from '@heroicons/vue/24/solid'
+import { EyeIcon } from '@heroicons/vue/24/solid'
+import { EyeSlashIcon } from '@heroicons/vue/24/solid'
 const toast = useToast()
 const userAuthStore = useUserAuthStore()
 const router = useRouter()
+const passwordIs = ref(false)
 const userInfo = ref({
   email: '',
   password: ''
 })
+function showPassword() {
+  passwordIs.value = !passwordIs.value
+}
 const { googleSignIn } = useGoogleSignIn()
 async function UserLogin() {
   userAuthStore.loader = true
@@ -59,22 +68,36 @@ function githubSignIn() {
       <p class="heading-text">Welcome Back You've Been Missed</p>
       <form action="#" class="w-full" @submit.prevent="UserLogin()">
         <div class="form-input-wrapper">
-          <label for="" class="form-custom-label">Email</label>
-          <input
-            type="text"
-            class="form-custom-input"
-            placeholder="Enter your Email"
-            v-model="userInfo.email"
-          />
+          <div class="form-inner-wrapper">
+            <span class="form-control-span">
+              <EnvelopeIcon />
+            </span>
+            <input
+              type="text"
+              class="form-custom-input"
+              placeholder="Enter your Email"
+              v-model="userInfo.email"
+              autocomplete="true"
+            />
+          </div>
         </div>
         <div class="form-input-wrapper">
-          <label for="" class="form-custom-label">password</label>
-          <input
-            type="password"
-            class="form-custom-input"
-            placeholder="Enter your Password"
-            v-model="userInfo.password"
-          />
+          <div class="form-inner-wrapper">
+            <span class="form-control-span">
+              <LockClosedIcon />
+            </span>
+            <input
+              :type="passwordIs ? 'text' : 'password'"
+              class="form-custom-input"
+              placeholder="Enter your Password"
+              v-model="userInfo.password"
+              autocomplete="true"
+            />
+            <span class="form-control-span right-span" role="button" @click="showPassword">
+              <EyeSlashIcon v-if="passwordIs" />
+              <EyeIcon v-else />
+            </span>
+          </div>
         </div>
         <div class="flex items-center justify-between flex-wrap gap-2">
           <button type="submit" class="primary-button" :disabled="userAuthStore.loader">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import LoaderCircle from '@/components/CircleLoader.vue'
 import { useToast } from 'vue-toastification'
 import { auth } from '@/firebase-config'
@@ -9,6 +9,19 @@ import { EnvelopeIcon } from '@heroicons/vue/24/solid'
 import { LockClosedIcon } from '@heroicons/vue/24/solid'
 import { EyeIcon } from '@heroicons/vue/24/solid'
 import { EyeSlashIcon } from '@heroicons/vue/24/solid'
+import { supabase } from '@/lib/supabaseClient'
+
+const countries = ref([])
+
+async function getCountries() {
+  const { data } = await supabase.from('countries').select()
+  countries.value = data
+  console.log(countries.value)
+}
+
+onMounted(() => {
+  getCountries()
+})
 const loader = ref(false)
 const passwordIs = ref(false)
 const toast = useToast()
@@ -45,7 +58,7 @@ const userInfo = ref({
 })
 </script>
 <template>
-  <div class="h-full signup-wrapper flex items-center justify-center">
+  <div class="h-full signup-wrapper flex items-center justify-center flex-col">
     <div class="form-wrapper">
       <h1 class="main-heading">Register</h1>
       <p class="heading-text">Sign up to get started!</p>
@@ -74,6 +87,7 @@ const userInfo = ref({
               class="form-custom-input"
               placeholder="Enter your Email"
               v-model="userInfo.email"
+              autocomplete="true"
             />
           </div>
         </div>
@@ -87,6 +101,7 @@ const userInfo = ref({
               class="form-custom-input"
               placeholder="Enter your Password"
               v-model="userInfo.password"
+              autocomplete="true"
             />
             <span class="form-control-span right-span" role="button" @click="showPassword">
               <EyeSlashIcon v-if="passwordIs" />
@@ -108,6 +123,11 @@ const userInfo = ref({
         </div>
       </form>
     </div>
+    <select class="mt-5">
+      <option v-for="country in countries" :key="country.id" class="text-[var(--hover-text)]">
+        {{ country.name }}
+      </option>
+    </select>
   </div>
 </template>
 <style scoped></style>

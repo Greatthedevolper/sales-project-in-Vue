@@ -59,7 +59,7 @@ const welcomeArray = ref([
 <template>
   <div class="h-full">
     <div class="h-[calc(100%-140px)]">
-      <Carousel ref="carousel" v-model="currentSlide">
+      <Carousel ref="carousel" v-model="currentSlide" snapAlign="center">
         <Slide v-for="slide in welcomeArray" :key="slide.title">
           <div class="carousel__item w-full max-w-[320px] flex item-center justify-center flex-col">
             <div>

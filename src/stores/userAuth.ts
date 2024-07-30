@@ -16,13 +16,15 @@ export const useUserAuthStore = defineStore(
     const UserToken = ref('')
     const theme = ref('light')
     const userDetails = ref<UserDetails | null>(null)
+    const mobilemenu = ref(false)
 
     return {
       isUserLogin,
       loader,
       UserToken,
       theme,
-      userDetails
+      userDetails,
+      mobilemenu
     }
   },
   {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, markRaw, onBeforeMount, onUnmounted } from 'vue'
+import { useUserAuthStore } from '@/stores/userAuth'
 import customLink from '@/components/common/sidebarLinks.vue'
 import HomeIcon from '@/components/icons/IconHome.vue'
 import MainLogo from '@/components/logos/mainLogo.png'
@@ -8,17 +9,30 @@ import ToggleIcon from '@/components/icons/IconMenu.vue'
 import GlobeIcon from '@/components/icons/IconGlobe.vue'
 import ProductIcon from '@/components/icons/IconProducts.vue'
 
-const openSidebar = ref(true)
+import { XCircleIcon } from '@heroicons/vue/24/solid'
+
+const userAuthStore = useUserAuthStore()
+const openSidebar = ref(false)
+const mobileActive = ref(false)
 function toggleSideBar() {
   openSidebar.value = !openSidebar.value
 }
+function toggleMobileMenu() {
+  userAuthStore.mobilemenu = false
+}
 
 function sidebarOnScreenSize() {
-  if (window.innerWidth < 1024) {
-    openSidebar.value = true
+  if (window.innerWidth > 1023) {
+    mobileActive.value = false
+    openSidebar.value = false
+  } else if (window.innerWidth < 767) {
+    mobileActive.value = true
+    openSidebar.value = false
   } else {
     openSidebar.value = true
+    mobileActive.value = false
   }
+  userAuthStore.mobilemenu = false
 }
 onBeforeMount(() => {
   window.addEventListener('load', sidebarOnScreenSize)
@@ -54,7 +68,10 @@ const mainMenu = ref([
 </script>
 
 <template>
-  <aside class="side-bar" :class="{ active: openSidebar }">
+  <aside
+    class="side-bar"
+    :class="{ active: openSidebar, mobile: mobileActive, mobilemenu: userAuthStore.mobilemenu }"
+  >
     <router-link to="/" class="flex justify-center gap-2 py-2 w-full mb-4">
       <div v-if="!openSidebar" class="image-container">
         <img :src="MainLogo" />
@@ -63,7 +80,7 @@ const mainMenu = ref([
         <img :src="MobileLogo" />
       </div>
     </router-link>
-    <div class="py-2 flex flex-col gap-3">
+    <div class="py-2 flex flex-col gap-3 md:items-start items-center">
       <customLink :link="menu.link" v-for="(menu, index) in mainMenu" :key="index" class="p-2">
         <template #icon>
           <component
@@ -80,8 +97,17 @@ const mainMenu = ref([
       </customLink>
     </div>
     <span
-      class="toggle-button hidden md:block"
+      role="button"
+      v-if="userAuthStore.mobilemenu"
+      class="inline-flex md:hidden w-[30px] h-[30px] text-[var(--hover-color)] absolute top-4 end-4 z-50"
       type="button"
+      @click="toggleMobileMenu()"
+    >
+      <XCircleIcon />
+    </span>
+    <span
+      class="toggle-button hidden md:block"
+      role="button"
       @click="toggleSideBar()"
       :class="{ 'rotate-0': openSidebar, 'rotate-180': !openSidebar }"
     >

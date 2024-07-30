@@ -5,9 +5,10 @@ import { signOut } from 'firebase/auth'
 import { useUserAuthStore } from '@/stores/userAuth'
 import { useToast } from 'vue-toastification'
 import NotificationIcon from '@/components/icons/IconNotificationBell.vue'
-import MoonIcon from '@/components/icons/IconMoon.vue'
-import SunIcon from '@/components/icons/IconSun.vue'
-import DefualtIcon from '@/components/icons/IconDefualt.vue'
+import { Bars3CenterLeftIcon } from '@heroicons/vue/24/solid'
+import { SunIcon } from '@heroicons/vue/24/solid'
+import { MoonIcon } from '@heroicons/vue/24/solid'
+import { UserCircleIcon } from '@heroicons/vue/24/solid'
 const userAuthStore = useUserAuthStore()
 const toast = useToast()
 const theme = computed(() => userAuthStore.theme)
@@ -17,6 +18,9 @@ const profileMenuVisible = ref(false)
 const profileMenu = ref<HTMLElement | null>(null)
 function getNotification() {
   alert('notification')
+}
+function showMobileMenu() {
+  userAuthStore.mobilemenu = true
 }
 
 async function logoutUser() {
@@ -56,18 +60,29 @@ onBeforeMount(() => {
 })
 </script>
 <template>
-  <header class="bg-[var(--primary-color)] h-[60px] py-3 border-b border-[var(--hover-color)]" ref="profileMenu">
+  <header
+    class="bg-[var(--primary-color)] h-[60px] py-3 border-b border-[var(--hover-color)]"
+    ref="profileMenu"
+  >
     <div
       class="container-full px-4 flex items-center justify-between h-full border- border-white gap-3"
     >
-      <div></div>
+      <div>
+        <span
+          role="button"
+          class="md:hidden inline-flex w-[20px] h-[20px] text-[var(--hover-color)]"
+          @click="showMobileMenu"
+        >
+          <Bars3CenterLeftIcon />
+        </span>
+      </div>
       <div class="flex items-center gap-4">
         <div
           class="flex items-center gap-1 border border-[var(--hover-color)] rounded-full px-2 py-1"
           role="button"
           @click="changeTheme()"
         >
-          <span class="text-[var(--primary-text)] w-[16px] h-[16px] inline-flex">
+          <span class="text-[var(--hover-color)] w-[16px] h-[16px] inline-flex">
             <MoonIcon v-if="theme === 'light'" />
             <SunIcon v-else />
           </span>
@@ -75,7 +90,7 @@ onBeforeMount(() => {
         </div>
         <span
           role="button"
-          class="text-[var(--primary-text)] w-4 h-4 inline-flex"
+          class="text-[var(--hover-color)] w-4 h-4 inline-flex"
           @click="getNotification()"
         >
           <NotificationIcon />
@@ -95,7 +110,7 @@ onBeforeMount(() => {
                 alt=""
                 :src="userAuthStore.userDetails.photoURL"
               />
-              <DefualtIcon v-else class="text-[var(--hover-color)]" />
+              <UserCircleIcon v-else class="text-[var(--hover-color)]" />
             </span>
             <div class="profile-menu-wrapper" v-if="profileMenuVisible">
               <span
