@@ -10,13 +10,20 @@ import { LockClosedIcon } from '@heroicons/vue/24/solid'
 import { EyeIcon } from '@heroicons/vue/24/solid'
 import { EyeSlashIcon } from '@heroicons/vue/24/solid'
 import { supabase } from '@/lib/supabaseClient'
-
-const countries = ref([])
+interface Country {
+  name: string | null
+  id: string
+}
+const countries = ref<Country[]>([])
 
 async function getCountries() {
-  const { data } = await supabase.from('countries').select()
-  countries.value = data
-  console.log(countries.value)
+  const { data, error } = await supabase.from('countries').select()
+  if (error) {
+    console.error(error)
+    toast.error('Error fetching countries')
+    return
+  }
+  countries.value = data as Country[]
 }
 
 onMounted(() => {
