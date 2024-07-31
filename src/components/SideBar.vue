@@ -22,7 +22,6 @@ function toggleMobileMenu() {
 }
 
 function sidebarOnScreenSize() {
-  userAuthStore.mobilemenu = false
   if (window.innerWidth > 767) {
     mobileActive.value = false
     openSidebar.value = true

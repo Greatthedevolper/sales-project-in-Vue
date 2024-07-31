@@ -28,6 +28,8 @@ export const useUserAuthStore = defineStore(
     }
   },
   {
-    persist: true
+    persist: {
+      paths: ['isUserLogin', 'loader', 'UserToken', 'theme', 'userDetails']
+    }
   }
 )
