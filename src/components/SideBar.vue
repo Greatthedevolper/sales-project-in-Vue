@@ -22,17 +22,14 @@ function toggleMobileMenu() {
 }
 
 function sidebarOnScreenSize() {
-  if (window.innerWidth > 1023) {
+  userAuthStore.mobilemenu = false
+  if (window.innerWidth > 767) {
     mobileActive.value = false
-    openSidebar.value = false
-  } else if (window.innerWidth < 767) {
+    openSidebar.value = true
+  } else {
     mobileActive.value = true
     openSidebar.value = false
-  } else {
-    openSidebar.value = true
-    mobileActive.value = false
   }
-  userAuthStore.mobilemenu = false
 }
 onBeforeMount(() => {
   window.addEventListener('load', sidebarOnScreenSize)

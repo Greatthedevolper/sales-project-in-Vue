@@ -20,7 +20,7 @@
   &:has(aside.mobile) {
     @media (max-width: 767px) {
       & {
-        grid-template-columns: 1fr;
+        overflow: hidden;
       }
     }
   }
