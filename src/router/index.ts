@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useUserAuthStore } from '@/stores/userAuth'
-import { useToast } from 'vue-toastification'
-const toast = useToast()
+// import { useToast } from 'vue-toastification'
+// const toast = useToast()
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -49,6 +49,11 @@ const router = createRouter({
       path: '/single-category',
       name: 'single category',
       component: () => import('@/views/ShowCategory.vue')
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: () => import('@/views/ShowCart.vue')
     }
   ]
 })
@@ -69,6 +74,12 @@ router.beforeEach((to, from, next) => {
       next()
     }
   }
+})
+
+router.afterEach(() => {
+  const userAuthStore = useUserAuthStore()
+  userAuthStore.mobilemenu = false
+  userAuthStore.profileMenuVisible = false
 })
 
 export default router

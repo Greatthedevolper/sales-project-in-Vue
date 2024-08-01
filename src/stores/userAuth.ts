@@ -17,6 +17,7 @@ export const useUserAuthStore = defineStore(
     const theme = ref('light')
     const userDetails = ref<UserDetails | null>(null)
     const mobilemenu = ref(false)
+    const profileMenuVisible = ref(false)
 
     return {
       isUserLogin,
@@ -24,7 +25,8 @@ export const useUserAuthStore = defineStore(
       UserToken,
       theme,
       userDetails,
-      mobilemenu
+      mobilemenu,
+      profileMenuVisible
     }
   },
   {

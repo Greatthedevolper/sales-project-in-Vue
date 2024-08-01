@@ -1,15 +1,36 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useCartStore = defineStore(
-  'cartstore',
-  () => {
-    const addedCartItems = ref([])
-    return {
-      addedCartItems
+interface Product {
+  id: number
+  title: string
+  price: number
+  thumbnail: string
+  quantity: number
+}
+
+export const useCartStore = defineStore('cartstore', () => {
+  const addedCartItems = ref<Product[]>([])
+
+  function incrementQuantity(productId: number) {
+    const product = addedCartItems.value.find(item => item.id === productId)
+    if (product) {
+      product.quantity++
     }
-  },
-  {
-    persist: true
   }
-)
+
+  function decrementQuantity(productId: number) {
+    const product = addedCartItems.value.find(item => item.id === productId)
+    if (product && product.quantity > 1) {
+      product.quantity--
+    }
+  }
+
+  return {
+    addedCartItems,
+    incrementQuantity,
+    decrementQuantity
+  }
+}, {
+  persist: true
+})

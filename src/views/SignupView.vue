@@ -54,6 +54,7 @@ async function UserSignup() {
     }
   }
 }
+
 function showPassword() {
   passwordIs.value = !passwordIs.value
 }

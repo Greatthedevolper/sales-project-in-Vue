@@ -140,5 +140,11 @@
 }
 
 .profile-menu-wrapper {
-  @apply absolute right-0 top-full translate-y-1/2 p-2 z-50 w-[200px] py-2 bg-[var(--primary-color)] text-[var(--hover-color)] rounded shadow-md border border-[var(--hover-color)] flex flex-col gap-2;
+  @apply absolute right-0 top-full translate-y-1/2  z-50 w-[200px]  bg-[var(--primary-color)] text-[var(--hover-color)] rounded shadow-md border border-[var(--hover-color)] flex flex-col;
+}
+.profile-menu-wrapper li a {
+  @apply w-full flex items-center justify-start gap-2  hover:bg-[var(--hover-color)] hover:text-[var(--hover-text)] rounded-sm p-2 cursor-pointer;
+}
+.profile-menu-wrapper li a .menu-icon {
+  @apply w-[20px] h-[20px];
 }

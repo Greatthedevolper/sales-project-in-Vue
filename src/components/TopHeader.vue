@@ -9,12 +9,14 @@ import { Bars3CenterLeftIcon } from '@heroicons/vue/24/solid'
 import { SunIcon } from '@heroicons/vue/24/solid'
 import { MoonIcon } from '@heroicons/vue/24/solid'
 import { UserCircleIcon } from '@heroicons/vue/24/solid'
+import { PowerIcon } from '@heroicons/vue/24/solid'
+import { ShoppingCartIcon } from '@heroicons/vue/24/solid'
 const userAuthStore = useUserAuthStore()
 const toast = useToast()
 const theme = computed(() => userAuthStore.theme)
 import { useRouter } from 'vue-router'
 const router = useRouter()
-const profileMenuVisible = ref(false)
+
 const profileMenu = ref<HTMLElement | null>(null)
 function getNotification() {
   alert('notification')
@@ -42,12 +44,12 @@ function changeTheme() {
   document.documentElement.classList.toggle('light', userAuthStore.theme === 'light')
 }
 function showOption() {
-  profileMenuVisible.value = !profileMenuVisible.value
+  userAuthStore.profileMenuVisible = !userAuthStore.profileMenuVisible
 }
 const handleClickOutside = (event: MouseEvent) => {
   if (profileMenu.value) {
     if (!profileMenu.value.contains(event.target as Node)) {
-      profileMenuVisible.value = false
+      userAuthStore.profileMenuVisible = false
     }
   }
 }
@@ -112,16 +114,24 @@ onBeforeMount(() => {
               />
               <UserCircleIcon v-else class="text-[var(--hover-color)]" />
             </span>
-            <div class="profile-menu-wrapper" v-if="profileMenuVisible">
-              <span
-                v-if="userAuthStore.isUserLogin"
-                role="button"
-                @click="logoutUser()"
-                class="text-inherit inline-flex"
-              >
-                Logout</span
-              >
-            </div>
+            <ul class="profile-menu-wrapper" v-if="userAuthStore.profileMenuVisible">
+              <li role="button">
+                <router-link to="/cart">
+                  <span class="menu-icon">
+                    <ShoppingCartIcon />
+                  </span>
+                  <span class="font-medium">Cart</span>
+                </router-link>
+              </li>
+              <li v-if="userAuthStore.isUserLogin" role="button">
+                <router-link to="#" @click="logoutUser()">
+                  <span class="menu-icon">
+                    <PowerIcon />
+                  </span>
+                  <span class="font-medium">Logout</span>
+                </router-link>
+              </li>
+            </ul>
           </div>
         </div>
 
