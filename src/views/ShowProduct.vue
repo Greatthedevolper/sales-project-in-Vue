@@ -19,15 +19,15 @@ interface Review {
 interface Product {
   id: number
   title: string
+  price: number
+  thumbnail: string
+  quantity: number
   images: string[]
   description: string
   category: string
   brand: string
-  price: string
-  stock: string
-  rating: string
-  availabilityStatus: string
-  reviews: Review[]
+  stock: number
+  rating: number
 }
 
 interface CartItem extends Product {
