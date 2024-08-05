@@ -1,6 +1,13 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
+interface Review {
+  reviewerName: string
+  comment: string
+  rating: number
+  date: string
+}
+
 interface Product {
   id: number
   title: string
@@ -13,6 +20,8 @@ interface Product {
   brand: string
   stock: number
   rating: number
+  availabilityStatus: string
+  reviews: Review[]
 }
 
 export const useCartStore = defineStore(

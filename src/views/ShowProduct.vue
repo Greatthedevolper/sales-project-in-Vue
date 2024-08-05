@@ -28,11 +28,11 @@ interface Product {
   brand: string
   stock: number
   rating: number
+  availabilityStatus: string
+  reviews: Review[]
 }
 
-interface CartItem extends Product {
-  quantity: number
-}
+interface CartItem extends Product {}
 
 const cartStore = useCartStore()
 const StoreItems = ref<CartItem[]>(cartStore.addedCartItems)
