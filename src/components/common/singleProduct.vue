@@ -14,7 +14,7 @@ const props = defineProps<{
   <router-link
     :to="`/single-product?id=${props.productData.id}`"
     v-if="props.productData"
-    class="border border-[var(--hover-color)] rounded hover:bg-[var(--hover-color)] text-[var(--hover-color)] hover:text-[var(--hover-text)] flex flex-col justify-center items-center"
+    class="product-box"
   >
     <div class="w-full h-[300px] flex p-4 rounded">
       <img :src="props.productData.thumbnail" class="rounded w-full" />

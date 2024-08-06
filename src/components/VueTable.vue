@@ -14,7 +14,7 @@ const searchField = ['title']
 const searchValue = ref()
 const headers: Header[] = [
   // { text: 'Id', value: 'id' },
-  { text: 'Title', value: 'title' },
+  { text: 'Title', value: 'title', width: 200 },
   { text: 'Category', value: 'category', sortable: true },
   { text: 'Price', value: 'price' },
   { text: 'Rating', value: 'rating' },
@@ -62,9 +62,10 @@ watch(
     body-text-direction="start"
     :search-field="searchField"
     :search-value="searchValue"
+    :rows-per-page="10"
   >
     <template #item-title="{ title, id }">
-      <router-link :to="`/single-product?id=${id}`">{{ title }}</router-link>
+      <router-link :to="`/single-product?id=${id}`" class="text-nowrap">{{ title }}</router-link>
     </template>
     <template #item-thumbnail="{ thumbnail }">
       <img
@@ -123,5 +124,15 @@ watch(
   width: 50px;
   height: 50px;
   object-fit: cover;
+}
+.vue3-easy-data-table__main {
+  max-height: calc(100dvh - 180px);
+  height: 100%;
+
+  @media (max-width: 767px) {
+    & {
+      max-height: calc(100dvh - 215px);
+    }
+  }
 }
 </style>

@@ -148,3 +148,13 @@
 .profile-menu-wrapper li a .menu-icon {
   @apply w-[20px] h-[20px];
 }
+
+.product-box {
+  @apply border border-[var(--hover-color)] rounded  text-[var(--hover-color)]  flex flex-col justify-center items-center transition-all;
+  /* box-shadow: inset 0px 0px 20px 6px var(--hover-color); */
+
+  &:hover {
+    @apply bg-[var(--hover-color)] text-[var(--hover-text)];
+    box-shadow: inset 0px 0px 20px 6px var(--primary-color);
+  }
+}
