@@ -154,7 +154,11 @@
   /* box-shadow: inset 0px 0px 20px 6px var(--hover-color); */
 
   &:hover {
-    @apply bg-[var(--hover-color)] text-[var(--hover-text)];
-    box-shadow: inset 0px 0px 20px 6px var(--primary-color);
+    /* @apply bg-[var(--hover-color)] text-[var(--hover-text)]; */
+    box-shadow: inset 0px 0px 20px 6px var(--hover-color);
   }
+}
+
+.grid-product-list {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-5 gap-y-5 h-[calc(100%-90px)] md:h-[calc(100%-50px)] overflow-y-auto px-4;
 }

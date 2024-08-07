@@ -5,18 +5,35 @@ import TableView from '@/components/VueTable.vue'
 import GridView from '@/components/GridView.vue'
 import LoaderCircle from '@/components/common/CircleLoader.vue'
 
-const products = ref([])
+const products = ref<any>([])
 const isTableView = ref(true)
+const currentPage = ref(1)
+const limit = 10
+const totalProducts = ref(0)
 function ChangeView(view: 'table' | 'grid') {
   isTableView.value = view === 'table'
 }
-onMounted(() => {
-  fetch('https://dummyjson.com/products?limit=0')
+function fetchProducts(page = currentPage.value) {
+  fetch(`https://dummyjson.com/products?limit=${limit}&skip=${(page - 1) * limit}`)
     .then((res) => res.json())
     .then((json) => {
-      products.value = json.products
+      if (page == 1) {
+        products.value = json.products
+      } else {
+        products.value = [...products.value, ...json.products]
+      }
+      totalProducts.value = json.total
     })
+}
+onMounted(() => {
+  fetchProducts()
 })
+function getMoreData() {
+  if (products.value.length < totalProducts.value) {
+    currentPage.value++
+    fetchProducts()
+  }
+}
 </script>
 
 <template>
@@ -46,7 +63,7 @@ onMounted(() => {
         Grid View
       </button>
     </div>
-    <GridView v-if="isTableView" :gridData="products"></GridView>
+    <GridView v-if="isTableView" :gridData="products" @scrollTheProducts="getMoreData"></GridView>
 
     <TableView v-if="!isTableView" :productData="products" />
   </template>
