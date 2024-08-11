@@ -1,3 +1,4 @@
+import '@/assets/fonts/stylesheet.css';
 import '@/assets/tailwind.css'
 import '@/assets/main.css'
 import piniaPluginPersistedState from 'pinia-plugin-persistedstate'
@@ -7,7 +8,6 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import Vue3EasyDataTable from 'vue3-easy-data-table'
 import 'vue3-easy-data-table/dist/style.css'
-
 
 import App from './App.vue'
 import router from './router'

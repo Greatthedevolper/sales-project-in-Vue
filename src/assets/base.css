@@ -1,81 +1,133 @@
-/* color palette from <https://github.com/vuejs/theme> */
-:root {
-  --white: #ffffff;
-  --white-soft: #f8f8f8;
-  --white-mute: #f2f2f2;
+@import './css/variables.css';
+@import './css/sidebar.css';
 
-  --black-light: #181818;
-  --black-soft: #222222;
-  --black-mute: #282828;
+/* custom css start here */
 
-  --divider-light-1: rgba(60, 60, 60, 0.29);
-  --divider-light-2: rgba(60, 60, 60, 0.12);
-  --divider-dark-1: rgba(84, 84, 84, 0.65);
-  --divider-dark-2: rgba(84, 84, 84, 0.48);
-
-  --text-light-1: var(--vt-c-indigo);
-  --text-light-2: rgba(60, 60, 60, 0.66);
-  --text-dark-1: var(--vt-c-white);
-  --text-dark-2: rgba(235, 235, 235, 0.64);
+.main-content-wrapper {
+  @apply h-dvh  overflow-hidden select-none transition-all;
+}
+.main-inner-wrapper {
+  @apply relative h-[calc(100dvh-60px)] bg-[var(--primary-color)] overflow-hidden;
 }
 
-/* semantic color variables for this project */
-:root {
-  --color-background: var(--white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
-
-  --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1);
-
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
-
-  --section-gap: 160px;
+.toggle-button {
+  @apply absolute top-[30px] right-[-18px] -translate-x-1/2 -translate-y-1/2 w-[10px] z-30 cursor-pointer text-[var(--hover-color)];
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--vt-c-black);
-    --color-background-soft: var(--vt-c-black-soft);
-    --color-background-mute: var(--vt-c-black-mute);
+.image-container {
+  @apply h-[150px] w-full max-w-[150px];
+}
+.image-container img {
+  @apply h-full w-full;
+}
 
-    --color-border: var(--vt-c-divider-dark-2);
-    --color-border-hover: var(--vt-c-divider-dark-1);
+.form-wrapper {
+  @apply relative z-20 flex flex-col gap-2 bg-[var(--primary-color)]  rounded max-w-[300px] w-full;
+}
 
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
+.form-inner-wrapper {
+  @apply relative border border-[var(--primary-text)] rounded focus:outline-none focus:border-[var(--primary-color)] ps-[30px];
+}
+.form-inner-wrapper .form-control-span {
+  @apply absolute top-1/2 start-[6px] -translate-y-1/2 h-[20px] w-[20px] text-[var(--hover-color)];
+}
+.form-inner-wrapper .form-control-span.right-span {
+  @apply end-[6px] start-[unset];
+}
+.form-inner-wrapper .form-custom-input {
+  @apply w-[calc(100%-8px)] mb-0 h-[35px]  bg-transparent border-0  focus:outline-none focus:border-[var(--primary-color)] text-[var(--primary-text)] px-2 placeholder:text-[var(--primary-text)] ms-[5px] border-l;
+}
+
+.form-custom-label {
+  @apply block mb-2 text-[var(--hover-color)];
+}
+.form-input-wrapper {
+  @apply mb-3;
+}
+.main-heading {
+  @apply text-[32px] leading-[30px] font-bold text-[var(--hover-color)] text-center mb-0;
+}
+.heading-text {
+  @apply text-[12px]  text-[var(--hover-color)] text-center mb-0;
+}
+
+.primary-button {
+  @apply bg-[var(--hover-color)] px-3 py-1 rounded max-w-fit text-[var(--hover-text)] cursor-pointer flex items-center gap-1  disabled:cursor-not-allowed;
+}
+.primary-button .button-text {
+  @apply line-clamp-1 capitalize font-semibold;
+}
+
+.span-badge {
+  @apply rounded-full text-[var(--hover-text)] bg-[var(--hover-color)] py-1 px-3 capitalize;
+}
+.span-badge-text {
+  @apply text-lg font-semibold text-[var(--hover-color)];
+}
+.small-modal {
+  @apply fixed  inset-0 flex items-center justify-center;
+}
+.small-modal .inner-layer {
+  @apply w-full h-full  absolute z-10 bg-[#000000dd];
+}
+.small-modal .small-inner-modal {
+  @apply bg-[var(--primary-color)] rounded border border-[var(--hover-color)] max-w-[300px] w-full relative z-20 py-2 max-h-[300px] h-full overflow-hidden;
+}
+.small-modal .small-inner-modal > strong {
+  @apply text-lg text-[var(--hover-color)] px-2;
+}
+.small-modal .small-inner-modal > ul {
+  @apply flex flex-col gap-2 overflow-y-auto h-[calc(300px-50px)] p-2;
+}
+.small-modal .small-inner-modal > ul li {
+  @apply flex flex-col gap-1 text-[var(--hover-color)] rounded border border-[var(--hover-color)] p-2;
+}
+.primary-text {
+  @apply text-[var(--hover-color)];
+}
+
+.dashboard-container {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5;
+}
+.dashboard-container .dashboard-card {
+  @apply border border-[var(--hover-color)] rounded p-2  w-full;
+}
+
+.profile-icon-wrapper {
+  @apply inline-flex h-[40px] w-[40px] relative cursor-pointer;
+}
+.profile-icon-wrapper:after {
+  content: '❮';
+  position: absolute;
+  top: 50%;
+  right: -12px;
+  transform: translateY(-50%) rotate(270deg);
+  color: var(--hover-color);
+}
+
+.profile-menu-wrapper {
+  @apply absolute right-0 top-full translate-y-1/2  z-50 w-[200px]  bg-[var(--primary-color)] text-[var(--hover-color)] rounded shadow-md border border-[var(--hover-color)] flex flex-col;
+}
+.profile-menu-wrapper li a {
+  @apply w-full flex items-center justify-start gap-2  hover:bg-[var(--hover-color)] hover:text-[var(--hover-text)] rounded-sm p-2 cursor-pointer;
+}
+.profile-menu-wrapper li a .menu-icon {
+  @apply w-[20px] h-[20px];
+}
+
+.product-box {
+  @apply border border-[var(--hover-color)] rounded  text-[var(--hover-color)]  flex  gap-2 items-center h-[100px] p-2 transition-all;
+  /* box-shadow: inset 0px 0px 20px 6px var(--hover-color); */
+
+  &:hover {
+    /* @apply bg-[var(--hover-color)] text-[var(--hover-text)]; */
+    box-shadow: inset 0px 0px 2px 1px var(--hover-color);
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
+.grid-product-list-wrapper {
+  @apply h-[calc(100%-90px)] md:h-[calc(100%-50px)] overflow-y-auto px-4;
 }
-
-body {
-  height: 100dvh;
-  color: var(--color-text);
-  background: var(--color-background);
-  line-height: 1.6;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
-  font-size: 15px;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.grid-product-list-wrapper .grid-product-list {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-5 gap-y-5;
 }

@@ -28,7 +28,6 @@ function scrollProducts(event: Event) {
   const { scrollTop, clientHeight, scrollHeight } = target
   const buffer = 50
   if (scrollTop + clientHeight >= scrollHeight - buffer) {
-    console.log('hello')
     emit('scrollTheProducts')
   }
 }
@@ -44,12 +43,14 @@ function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
 const debouncedScrollProducts = debounce(scrollProducts, 200)
 </script>
 <template>
-  <div class="flex item-center justify-start gap-1 mb-2">
+  <div class="flex item-center justify-start gap-1 mb-2 px-4">
     <Search v-model:searchValue="searchValue" />
   </div>
-  <ul class="grid-product-list" @scroll="debouncedScrollProducts">
-    <li v-for="(product, index) in filteredProducts" :key="`product-${index}`">
-      <productSingle :productData="product"></productSingle>
-    </li>
-  </ul>
+  <div class="grid-product-list-wrapper" @scroll="debouncedScrollProducts">
+    <ul class="grid-product-list">
+      <li v-for="(product, index) in filteredProducts" :key="`product-${index}`">
+        <productSingle :productData="product"></productSingle>
+      </li>
+    </ul>
+  </div>
 </template>

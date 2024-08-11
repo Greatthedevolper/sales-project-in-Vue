@@ -44,7 +44,7 @@ async function UserLogin() {
       userAuthStore.isUserLogin = true
       userAuthStore.UserToken = idToken
       userAuthStore.userDetails = userCredential.user.providerData[0]
-      router.push('/')
+      router.push('/product')
     } catch (error) {
       const errorMessage = (error as Error).message
       toast.error(errorMessage)
@@ -69,29 +69,32 @@ function githubSignIn() {
       <form action="#" class="w-full" @submit.prevent="UserLogin()">
         <div class="form-input-wrapper">
           <div class="form-inner-wrapper">
-            <span class="form-control-span">
+            <label class="form-control-span" for="email">
               <EnvelopeIcon />
-            </span>
+            </label>
             <input
               type="text"
               class="form-custom-input"
               placeholder="Enter your Email"
               v-model="userInfo.email"
               autocomplete="true"
+              id="email"
             />
           </div>
         </div>
         <div class="form-input-wrapper">
           <div class="form-inner-wrapper">
-            <span class="form-control-span">
+            <label class="form-control-span" for="password">
               <LockClosedIcon />
-            </span>
+            </label>
             <input
               :type="passwordIs ? 'text' : 'password'"
               class="form-custom-input"
               placeholder="Enter your Password"
               v-model="userInfo.password"
               autocomplete="true"
+              id="password"
+              @keydown.enter="UserLogin"
             />
             <span class="form-control-span right-span" role="button" @click="showPassword">
               <EyeSlashIcon v-if="passwordIs" />
@@ -99,7 +102,7 @@ function githubSignIn() {
             </span>
           </div>
         </div>
-        <div class="flex items-center justify-between flex-wrap gap-2">
+        <div class="flex items-center justify-between flex-wrap ">
           <button type="submit" class="primary-button" :disabled="userAuthStore.loader">
             <span class="button-text">Login</span>
             <span class="h-[20px] w-[20px]" v-if="userAuthStore.loader">
@@ -112,7 +115,7 @@ function githubSignIn() {
               to="/signup"
               class="underline primary-text"
               :disabled="userAuthStore.loader"
-              >Signup</router-link
+              >Register</router-link
             >
           </div>
         </div>

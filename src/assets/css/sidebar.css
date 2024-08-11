@@ -1,0 +1,19 @@
+.side-bar {
+  @apply bg-[var(--primary-color)] py-4 px-3 fixed top-0 start-0 max-w-[160px] w-full h-dvh z-50 border-r border-[var(--hover-color)];
+}
+
+.side-bar.active {
+  @apply max-w-[60px];
+}
+.side-bar.mobile {
+  @apply hidden max-w-full;
+  &.mobilemenu {
+    @apply block;
+  }
+}
+.side-bar-link {
+  @apply flex relative text-[var(--hover-color)] gap-2 md:justify-start justify-center items-center hover:bg-[var(--hover-color)] hover:text-[var(--hover-text)]  rounded max-w-[150px] w-full;
+}
+.side-bar-link.router-link-active.router-link-exact-active {
+  @apply bg-[var(--hover-color)] text-[var(--hover-text)];
+}

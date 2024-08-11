@@ -26,30 +26,3 @@
   }
 }
 
-html,
-body {
-  scroll-behavior: smooth;
-}
-*::-webkit-scrollbar {
-  width: 5px;
-}
-
-*::-webkit-scrollbar-track {
-  background: var(--primary-color);
-}
-
-*::-webkit-scrollbar-thumb {
-  background: var(--hover-color);
-  border-radius: 8px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: var(--hover-color);
-}
-
-input:-webkit-autofill:focus,
-input:-webkit-autofill {
-  background-color: var(--primary-color) !important;
-  -webkit-box-shadow: 0 0 0 30px var(--primary-color) inset !important;
-  -webkit-text-fill-color: var(--primary-text) !important;
-}

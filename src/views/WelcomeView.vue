@@ -69,7 +69,7 @@ const welcomeArray = ref([
               <span class="text-[var(--hover-color)] text-[20px] font-semibold">
                 {{ slide.title }}
               </span>
-              <span class="text-[8px]">{{ slide.description }}</span>
+              <span class="text-[12px]">{{ slide.description }}</span>
             </div>
           </div>
         </Slide>
