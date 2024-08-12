@@ -88,7 +88,7 @@ onBeforeMount(() => {
             <MoonIcon v-if="theme === 'light'" />
             <SunIcon v-else />
           </span>
-          <span class="text-sm text-[var(--primary-text)] md:block hidden">Theme</span>
+          <span class="text-sm text-[var(--hover-color)] md:block hidden">Theme</span>
         </div>
         <span
           role="button"

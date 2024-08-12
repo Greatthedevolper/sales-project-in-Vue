@@ -35,7 +35,7 @@
   @apply end-[6px] start-[unset];
 }
 .form-inner-wrapper .form-custom-input {
-  @apply w-[calc(100%-8px)] mb-0 h-[35px]  bg-transparent border-0  focus:outline-none focus:border-[var(--primary-color)] text-[var(--primary-text)] px-2 placeholder:text-[var(--primary-text)] ms-[5px] border-l;
+  @apply w-[calc(100%-8px)] mb-0 h-[35px]  bg-transparent border-0  focus:outline-none focus:border-[var(--hover-color)] text-[var(--primary-text)] px-2 placeholder:text-[var(--primary-text)] ms-[5px] border-l border-[var(--hover-color)];
 }
 
 .form-custom-label {

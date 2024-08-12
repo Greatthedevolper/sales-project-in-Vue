@@ -8,7 +8,7 @@ import MobileLogo from '@/components/logos/mobileLogo.png'
 import ToggleIcon from '@/components/icons/IconMenu.vue'
 import GlobeIcon from '@/components/icons/IconGlobe.vue'
 import ProductIcon from '@/components/icons/IconProducts.vue'
-
+import { ShoppingCartIcon } from '@heroicons/vue/24/solid'
 import { XCircleIcon } from '@heroicons/vue/24/solid'
 
 const userAuthStore = useUserAuthStore()
@@ -54,6 +54,11 @@ const mainMenu = ref([
     label: 'Products',
     link: '/product',
     icon: markRaw(ProductIcon)
+  },
+  {
+    label: 'Cart',
+    link: '/cart',
+    icon: markRaw(ShoppingCartIcon)
   },
   {
     label: 'Map',
