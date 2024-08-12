@@ -6,15 +6,16 @@ import LoaderCircle from '@/components/common/CircleLoader.vue'
 
 const productStore = useProductStore()
 
-const emit = defineEmits(['closeFilterModal','fetchAgainAllproducts'])
+const emit = defineEmits(['closeFilterModal', 'fetchAgainAllproducts'])
 
 function closeModal() {
   emit('closeFilterModal')
 }
 function fetchCategoryProduct(category: string, id: number) {
   productStore.singleCategory(category, id)
+  emit('closeFilterModal')
 }
-function fetchProducts(){
+function fetchProducts() {
   emit('fetchAgainAllproducts')
 }
 onMounted(() => {
